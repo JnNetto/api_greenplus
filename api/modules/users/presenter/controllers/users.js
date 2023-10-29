@@ -1,5 +1,5 @@
 // let usercaseRegisterUser = require('../../domain/usecase/register-user/register_user')
-// let usecaseGetUser = require('../../domain/usecase/get-users/get_user')
+let getUserByUserName = require('../../domain/usecase/get-users/get_user')
 // let usecaseGetUsers = require('../../domain/usecase/get-users/get_users')
 let usecaseUpdateUserValue = require('../../domain/usecase/update-user/update')
 let usecaseLogin = require('../../domain/usecase/login/login')
@@ -19,7 +19,7 @@ controller.getAll = (req, res, next) => {
 controller.findUser = (req, res, next) => {
     const token = req.body.token || req.query.token || req.headers["authorization"];
     let user = authServices.decodeToken(token);
-    usecaseGetUser('username', user.username).then(user => {
+    getUserByUserName('username', user.username).then(user => {
         res.json({data: user})
     }).catch(err => {
         res.status(500).json(err)

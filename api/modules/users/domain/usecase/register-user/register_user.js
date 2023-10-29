@@ -1,7 +1,7 @@
 //Use case register user
-let usersRepo = require('../../../../../reposotiry/users')
-let authServices = require('../../../../../core/services/auth_services')
-const { any } = require('joi')
+//let usersRepo = require('../../../../../reposotiry/users')
+//let authServices = require('../../../../../core/services/auth_services')
+//const { any } = require('joi')
 
 // module.exports = usecaseRegisterUser = async (user) => {
 //     console.log(user)
