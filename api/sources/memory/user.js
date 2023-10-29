@@ -8,7 +8,7 @@ const user = [
     {
         id: '2',
         token: '123456789',
-        username: 'jpgama2',
+        username: 'apollo',
         password: '$2a$10$iJ2EH3eYbn6.xEaHdoGVJeciM2amQXgA1nMZ/4BdnnDIp89PL3E42',
     }
 ]
