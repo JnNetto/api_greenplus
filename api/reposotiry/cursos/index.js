@@ -16,6 +16,14 @@ let findUser = (prop, val) => {
   }
 }
 
+let findId = (id) => {
+  try{
+    return Promise.resolve(Cursos.findId(id))
+  }catch(err){
+    return Promise.reject(err)
+  }
+}
+
 let register = async (userInfo) =>  {
   try{
     userInfo = await Cursos.register(userInfo)
@@ -60,6 +68,7 @@ let updateUserValue = (id, key, value) => {
 module.exports = {
   listCursos,
   findUser,
+  findId,
   register,
   deleteUser,
   dropAll, 

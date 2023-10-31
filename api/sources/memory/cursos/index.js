@@ -23,6 +23,10 @@ let findAll = () => {
     return cursosDb
 }
 
+let findId = (id) => {
+    return cursosDb.filter(curso => curso.id == id)
+}
+
 let register = (userInfo) => {
     cursosDb.push(userInfo)
 }
@@ -68,6 +72,7 @@ let update = (id, userInfo) => {
 module.exports = {
     find,
     findAll,
+    findId,
     register,
     deleteUser,
     dropAll, 

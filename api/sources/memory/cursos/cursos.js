@@ -15,7 +15,7 @@ const cursos = [
       "action": "/periodos/3",
       "id": "3",
       "icon": "0xf085d"
-    }
+    },
   ]
 
 module.exports = cursos
