@@ -23,6 +23,10 @@ let findAll = () => {
     return menuDb
 }
 
+let findIdMenu = (id) => {
+    return menuDb.filter(menu => menu.id == id)
+}
+
 let findId = (id) => {
     return menuDb.filter(curso => curso.id == id)
 }
@@ -78,6 +82,7 @@ let update = (id, userInfo) => {
 module.exports = {
     find,
     findAll,
+    findIdMenu,
     findId,
     findIdCurso,
     register,

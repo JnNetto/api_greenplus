@@ -8,6 +8,14 @@ let listMenu = () => {
   }
 }
 
+let findIdMenu = (id) => {
+  try{
+    return Promise.resolve(Menu.findIdMenu(id))
+  }catch(err){
+    return Promise.reject(err)
+  }
+}
+
 let findUser = (prop, val) => {
   try{
     return Promise.resolve(Menu.find(prop, val))
@@ -76,6 +84,7 @@ let updateUserValue = (id, key, value) => {
 module.exports = {
   listMenu,
   findUser,
+  findIdMenu,
   findPeriodoPorCurso,
   findPeriodo,
   register,
