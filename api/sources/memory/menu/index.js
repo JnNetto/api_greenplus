@@ -36,9 +36,9 @@ let findIdCurso = (id) => {
     return idCurso ? idCurso.id : null
 }
 
-let register = (curso) => {
-    menuDb.push(curso)
-    return curso.id;
+let register = (menu) => {
+    menuDb.push(menu)
+    return menu.id;
 }
 
 let deleteUser = (id) => {

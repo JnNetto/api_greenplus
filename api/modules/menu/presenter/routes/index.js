@@ -9,7 +9,7 @@ const menu = require('../controllers/menu')
 router.get('/Allmenu', auth , menu.getAll)
 router.get('/:idMenu', auth , menu.getMenu)
 // router.get('/checktoken', auth, (req, res, nex)=> res.json({data: 'ok'}))
-//router.post('/register', auth,cursos.register)
+router.post('/registerMenu', auth , menu.registerMenu)
 // router.post('/login', cursos.login)
 
 module.exports = router

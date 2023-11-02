@@ -40,10 +40,10 @@ let findPeriodo = (periodos, idPeriodo) => {
   }
 }
 
-let register = async (userInfo) =>  {
+let register = async (menu) =>  {
   try{
-    userInfo = await Menu.register(userInfo)
-    return userInfo
+    menu = await Menu.register(menu)
+    return menu
   }catch(err){
     return Promise.reject(err)
   }
