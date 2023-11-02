@@ -4,7 +4,7 @@ const controller = {}
 
 controller.getAll = (req, res, next) => {
     usecaseGetCursos().then(cursos => {
-        res.send(cursos)
+        res.status(200).send(cursos)
     }).catch(err => {
         res.status(500).send(err)
     })
