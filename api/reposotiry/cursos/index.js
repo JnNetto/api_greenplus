@@ -33,10 +33,9 @@ let findIdCurso = (id) => {
   }
 }
 
-let register = async (userInfo) =>  {
+let register = async (curso) =>  {
   try{
-    userInfo = await Cursos.register(userInfo)
-    return userInfo
+    return Promise.resolve(Cursos.register(curso))
   }catch(err){
     return Promise.reject(err)
   }

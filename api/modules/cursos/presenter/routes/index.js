@@ -7,10 +7,10 @@ const curso = require('../controllers/curso')
 // const { findId } = require('../../../../sources/memory/cursos')
 
 //router.get('', auth, (req, res, nex)=> res.json({data: 'ok'}))
-router.get('', auth, cursos.getAll)
+router.get('',  cursos.getAll)
 router.get('/:id', auth, curso.getCurso)
 // router.get('/checktoken', auth, (req, res, nex)=> res.json({data: 'ok'}))
-// router.post('/register', cursos.register)
+router.post('/register', cursos.register)
 // router.post('/login', cursos.login)
 
 module.exports = router

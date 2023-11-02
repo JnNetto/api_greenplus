@@ -32,8 +32,9 @@ let findIdCurso = (id) => {
     return idCurso ? idCurso.id : null
 }
 
-let register = (userInfo) => {
-    cursosDb.push(userInfo)
+let register = (curso) => {
+    cursosDb.push(curso)
+    return curso.id;
 }
 
 let deleteUser = (id) => {

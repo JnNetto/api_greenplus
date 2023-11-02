@@ -15,7 +15,7 @@ controller.getPeriodo = (req, res, next) => {
                     res.send(periodo);
                 }
             }).catch(err => {
-                res.status(500).send(err)
+                res.status(500).send("Erro interno")
             })
 }
 
