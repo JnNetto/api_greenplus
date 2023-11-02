@@ -2,18 +2,11 @@
  let cursosDb = require('../../../../../reposotiry/cursos')
 //let portersDb = require('../../../../../reposotiry/porters')
 
-// module.exports = getCourseById = async (id) => {
-//     return cursosDb.findId(id).then(idCurso => {
-//         return idCurso
-//     }).catch(err => {
-//         throw err
-//     })
-// }
-
+//retorna o curso pelo ID
 module.exports = getCourseById = async(id) => {
     try {
-        const idCurso = await cursosDb.findId(id);
-        return idCurso;
+        const curso = await cursosDb.findId(id);
+        return curso;
     } catch (err) {
         throw err;
     }

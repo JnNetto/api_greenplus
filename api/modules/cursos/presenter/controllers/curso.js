@@ -16,14 +16,5 @@ controller.getCurso = (req, res, next) => {
         })
 }
 
-// controller.getCurso = (req, res, next) => {
-//     let id = req.params.id;
-//     usecaseGetCurso(id).then(curso => {
-//         res.send(curso)
-//     }).catch(err => {
-//         res.status(500).send(err)
-//     })
-// }
-
 
 module.exports = controller

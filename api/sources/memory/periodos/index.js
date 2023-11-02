@@ -1,8 +1,8 @@
-let cursosDb = require('./cursos')
+let periodosDb = require('./periodos')
 //let serialize = require('./serializer')
 
 let find = (prop, val) => {
-        var user = cursosDb.find(user => user.username == val)
+        var user = periodosDb.find(user => user.username == val)
         if (user) {
             return user
         } else {
@@ -20,26 +20,42 @@ let find = (prop, val) => {
 // }
 
 let findAll = () => {
-    return cursosDb
+    return periodosDb
 }
 
-let findId = (id) => {
-    return cursosDb.filter(curso => curso.id == id)
+////////////////////////////////
+let findPeriodoPorCurso = (id) => {
+    const periodo = periodosDb[id]
+    if (periodo) {
+        // console.log(periodo)
+        return periodo
+    } else {
+        // console.log(null)
+        return null
+    }
 }
 
-let findIdCurso = (id) => {
-    const idCurso = cursosDb.find(curso => curso.id == id)
-    return idCurso ? idCurso.id : null
+let findPeriodo = (periodos, idPeriodo) => {
+    const index = idPeriodo - 1
+    const periodo = periodos[index]
+    console.log(periodo)
+    if (periodo) {
+        console.log(periodo)
+        return [periodo]
+    } else {
+        console.log([])
+        return []
+    }
 }
-
+////////////////////////////////
 let register = (userInfo) => {
-    cursosDb.push(userInfo)
+    periodosDb.push(userInfo)
 }
 
 let deleteUser = (id) => {
     let user = find('id', id)
     if (user) {
-        cursosDb = cursosDb.filter(user => user.id != id)
+        periodosDb = periodosDb.filter(user => user.id != id)
         return {
             message: 'User deleted',
         }
@@ -49,7 +65,7 @@ let deleteUser = (id) => {
 }
 
 let dropAll = () => {
-    cursosDb = []
+    periodosDb = []
     return {
         message: 'All users deleted'
     }
@@ -58,7 +74,7 @@ let dropAll = () => {
 let update = (id, userInfo) => {
     let user = find('id', id)
     if (user) {
-        cursosDb = cursosDb.map(user => {
+        periodosDb = periodosDb.map(user => {
             if (user.id == id) {
                 return userInfo
             } else {
@@ -77,8 +93,8 @@ let update = (id, userInfo) => {
 module.exports = {
     find,
     findAll,
-    findId,
-    findIdCurso,
+    findPeriodoPorCurso,
+    findPeriodo,
     register,
     deleteUser,
     dropAll, 

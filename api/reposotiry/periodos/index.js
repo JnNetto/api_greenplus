@@ -1,8 +1,8 @@
-let Cursos = require('../../sources/memory/cursos')
+let periodosDb = require('../../sources/memory/periodos')
 
 let listCursos = () => {
   try{
-    return Promise.resolve(Cursos.findAll())
+    return Promise.resolve(periodosDb.findAll())
   }catch(err){
     return Promise.reject(err)
   }
@@ -10,32 +10,31 @@ let listCursos = () => {
 
 let findUser = (prop, val) => {
   try{
-    return Promise.resolve(Cursos.find(prop, val))
+    return Promise.resolve(periodosDb.find(prop, val))
   }catch(err){
     return Promise.reject(err)
   }
 }
 
-let findId = (id) => {
+let findPeriodoPorCurso = (idCurso) => {
   try{
-    return Promise.resolve(Cursos.findId(id))
+    return Promise.resolve(periodosDb.findPeriodoPorCurso(idCurso))
   }catch(err){
     return Promise.reject(err)
   }
 }
 
-
-let findIdCurso = (id) => {
-  try{
-    return Promise.resolve(Cursos.findIdCurso(id))
-  }catch(err){
+let findPeriodo = (periodos, idPeriodo) => {
+  try {
+    return Promise.resolve(periodosDb.findPeriodo(periodos, idPeriodo))
+  } catch(err) {
     return Promise.reject(err)
   }
 }
 
 let register = async (userInfo) =>  {
   try{
-    userInfo = await Cursos.register(userInfo)
+    userInfo = await periodosDb.register(userInfo)
     return userInfo
   }catch(err){
     return Promise.reject(err)
@@ -44,7 +43,7 @@ let register = async (userInfo) =>  {
 
 let deleteUser = (id) => {
   try{
-    return Promise.resolve(Cursos.deleteUser(id))
+    return Promise.resolve(periodosDb.deleteUser(id))
   }catch(err){
     return Promise.reject(err)
   }
@@ -52,7 +51,7 @@ let deleteUser = (id) => {
 
 let dropAll = () => {
   try{
-    return Promise.resolve(Cursos.dropAll())
+    return Promise.resolve(periodosDb.dropAll())
   }catch(err){
     return Promise.reject(err)
   }
@@ -60,7 +59,7 @@ let dropAll = () => {
 
 let update = (id, userInfo) => {
   try{
-    return Promise.resolve(Cursos.update(id, userInfo))
+    return Promise.resolve(periodosDb.update(id, userInfo))
   }catch(err){
     return Promise.reject(err)
   }
@@ -68,7 +67,7 @@ let update = (id, userInfo) => {
 
 let updateUserValue = (id, key, value) => {
   try{
-    return Promise.resolve(Cursos.updateUserValue(id, key, value))
+    return Promise.resolve(periodosDb.updateUserValue(id, key, value))
   }catch(err){
     return Promise.reject(err)
   }
@@ -77,8 +76,8 @@ let updateUserValue = (id, key, value) => {
 module.exports = {
   listCursos,
   findUser,
-  findId,
-  findIdCurso,
+  findPeriodoPorCurso,
+  findPeriodo,
   register,
   deleteUser,
   dropAll, 

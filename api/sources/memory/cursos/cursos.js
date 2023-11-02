@@ -1,3 +1,5 @@
+const periodos = require('../periodos/periodos')
+
 const cursos = [
     {
       "nome": "Engenharia\n de software",
