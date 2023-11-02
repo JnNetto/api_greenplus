@@ -6,7 +6,7 @@ const menu = require('../controllers/menu')
 // const { findId } = require('../../../../sources/memory/cursos')
 
 //router.get('', auth, (req, res, nex)=> res.json({data: 'ok'}))
-router.get('/menu', auth,menu.getAll)
+router.get('/Allmenu', auth,menu.getAll)
 //router.get('/:id', auth, curso.getCurso)
 // router.get('/checktoken', auth, (req, res, nex)=> res.json({data: 'ok'}))
 //router.post('/register', auth,cursos.register)

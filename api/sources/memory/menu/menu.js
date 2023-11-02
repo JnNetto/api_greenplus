@@ -35,3 +35,5 @@ const menu =[
       "icon": "0xe4f5"
     },
   ]
+
+module.exports = menu
