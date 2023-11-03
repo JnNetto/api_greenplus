@@ -1,6 +1,6 @@
 let periodosDb = require('../../sources/memory/periodos')
 
-let listCursos = () => {
+let listPeriodos = () => {
   try{
     return Promise.resolve(periodosDb.findAll())
   }catch(err){
@@ -74,7 +74,7 @@ let updateUserValue = (id, key, value) => {
 }
 
 module.exports = {
-  listCursos,
+  listPeriodos,
   findUser,
   findPeriodoPorCurso,
   findPeriodo,

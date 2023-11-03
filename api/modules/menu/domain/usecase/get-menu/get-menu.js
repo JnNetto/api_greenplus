@@ -1,5 +1,5 @@
 //Use case get menu (list all menu)
-let menuDb = require('../../../../reposotiry/menu')
+let menuDb = require('../../../../../reposotiry/menu')
 
 let usecaseGetMenu = async () => {
     return menuDb.listMenu().then(menu => {

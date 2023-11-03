@@ -1,4 +1,4 @@
-let modulosMenu = require('../../domain/usecase/get-menu')
+let modulosMenu = require('../../domain/usecase/get-menu/get-menu')
 let registerMenu = require('../../domain/usecase/register/register')
 
 const controller = {}

@@ -1,4 +1,4 @@
-let usecaseGetPeriodo = require('../../domain/usecase/get-periodos/get_periodo')
+let getPeriodo = require('../../domain/usecase/get-periodos/get_periodo')
 
 const controller = {}
 
@@ -6,7 +6,7 @@ controller.getPeriodo = (req, res, next) => {
     let idCurso = req.params.id;
     let periodo = req.params.periodo
 
-    usecaseGetPeriodo(idCurso, periodo)
+    getPeriodo.getPeriodoById(idCurso, periodo)
         .then(
             periodo => {
                 if (!periodo || periodo.length === 0) {
@@ -17,6 +17,25 @@ controller.getPeriodo = (req, res, next) => {
             }).catch(err => {
                 res.status(500).send("Erro interno")
             })
+}
+
+controller.getAll = (req, res, next) => {
+    getPeriodo.usecaseGetPeriodos().then(cursos => {
+        res.send(cursos)
+    }).catch(err => {
+        res.status(500).send(err)
+    })
+}
+
+controller.getPeriodosCurso = (req, res, next) => {
+    let id = req.params.idCurso
+
+    getPeriodo.getPeriodos(id).then(
+        periodos => {
+            res.send(periodos)
+        }).catch(err => {
+            res.status(500).send(err)
+        })
 }
 
 

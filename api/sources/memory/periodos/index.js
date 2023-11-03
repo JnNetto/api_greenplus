@@ -23,7 +23,6 @@ let findAll = () => {
     return periodosDb
 }
 
-////////////////////////////////
 let findPeriodoPorCurso = (id) => {
     const periodo = periodosDb[id]
     if (periodo) {
@@ -36,18 +35,15 @@ let findPeriodoPorCurso = (id) => {
 }
 
 let findPeriodo = (periodos, idPeriodo) => {
-    const index = idPeriodo - 1
-    const periodo = periodos[index]
-    console.log(periodo)
+    const periodo = periodos.filter(periodoid => periodoid.id == idPeriodo)
     if (periodo) {
         console.log(periodo)
-        return [periodo]
+        return periodo
     } else {
-        console.log([])
-        return []
+        return null
     }
 }
-////////////////////////////////
+
 let register = (userInfo) => {
     periodosDb.push(userInfo)
 }

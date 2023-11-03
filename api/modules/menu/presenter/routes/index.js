@@ -8,8 +8,8 @@ const menu = require('../controllers/menu')
 //router.get('', auth, (req, res, nex)=> res.json({data: 'ok'}))
 router.get('/Allmenu', auth , menu.getAll)
 router.get('/:idMenu', auth , menu.getMenu)
-// router.get('/checktoken', auth, (req, res, nex)=> res.json({data: 'ok'}))
 router.post('/registerMenu', auth , menu.registerMenu)
+// router.get('/checktoken', auth, (req, res, nex)=> res.json({data: 'ok'}))
 // router.post('/login', cursos.login)
 
 module.exports = router
