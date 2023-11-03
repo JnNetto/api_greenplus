@@ -1,4 +1,4 @@
-let User = require('../../sources/memory/index')
+let User = require('../../sources/memory/user/index')
 
 let listUsers = () => {
   try{
