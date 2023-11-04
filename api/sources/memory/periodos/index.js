@@ -26,10 +26,9 @@ let findAll = () => {
 let findPeriodoPorCurso = (id) => {
     const periodo = periodosDb[id]
     if (periodo) {
-        // console.log(periodo)
+        console.log(periodo)
         return periodo
     } else {
-        // console.log(null)
         return null
     }
 }

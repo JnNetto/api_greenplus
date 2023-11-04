@@ -28,7 +28,7 @@ controller.getAll = (req, res, next) => {
 }
 
 controller.getPeriodosCurso = (req, res, next) => {
-    let id = req.params.idCurso
+    let id = req.params.idcurso
 
     getPeriodo.getPeriodos(id).then(
         periodos => {

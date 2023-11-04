@@ -23,9 +23,24 @@ let findAll = () => {
     return qrcodeDb
 }
 
-let findIdMenu = (id) => {
-    return qrcodeDb.filter(menu => menu.id == id)
+let findIdQrcodeCurso = (id) => {
+    const qrCode = qrcodeDb[id]
+    if (qrCode) {
+        return qrCode
+    } else {
+        return null
+    }
 }
+
+let findQrcode = (qrCodeCurso, idPeriodo) => {
+    const qrCode = qrCodeCurso[idPeriodo]
+    if (qrCode) {
+        return qrCode
+    } else {
+        return null
+    }
+}
+
 
 let findId = (id) => {
     return qrcodeDb.filter(curso => curso.id == id)
@@ -82,7 +97,8 @@ let update = (id, userInfo) => {
 module.exports = {
     find,
     findAll,
-    findIdMenu,
+    findQrcode,
+    findIdQrcodeCurso,
     findId,
     findIdCurso,
     register,

@@ -8,7 +8,7 @@ const periodo = require('../controllers/periodo')
 
 //router.get('', auth, (req, res, nex)=> res.json({data: 'ok'}))
 router.get('/all', auth, periodo.getAll)
-router.get('/:idCurso', auth,periodo.getPeriodosCurso)
+router.get('/:idcurso', auth,periodo.getPeriodosCurso)
 router.get('/:id/:periodo', auth, periodo.getPeriodo)
 // router.get('/checktoken', auth, (req, res, nex)=> res.json({data: 'ok'}))
 // router.post('/register', cursos.register)

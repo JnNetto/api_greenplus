@@ -8,10 +8,18 @@ let listQrcode = () => {
   }
 }
 
-let findIdMenu = (id) => {
+let findIdQrcodeCurso = (id) => {
   try{
-    return Promise.resolve(qrcode.findIdMenu(id))
+    return Promise.resolve(qrcode.findIdQrcodeCurso(id))
   }catch(err){
+    return Promise.reject(err)
+  }
+}
+
+let findQrcode = (qrCodeCurso, idPeriodo) => {
+  try {
+    return Promise.resolve(qrcode.findQrcode(qrCodeCurso, idPeriodo))
+  } catch(err) {
     return Promise.reject(err)
   }
 }
@@ -83,8 +91,9 @@ let updateUserValue = (id, key, value) => {
 
 module.exports = {
   listQrcode,
+  findIdQrcodeCurso,
+  findQrcode,
   findUser,
-  findIdMenu,
   findPeriodoPorCurso,
   findPeriodo,
   register,
