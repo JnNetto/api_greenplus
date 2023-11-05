@@ -48,18 +48,18 @@ let findPeriodo = (periodos, idPeriodo) => {
   }
 }
 
-let register = async (menu) =>  {
+let register = async (qrCodePeriodo, novoQrCode) =>  {
   try{
-    menu = await qrcode.register(menu)
-    return menu
+    id = await qrcode.register(qrCodePeriodo, novoQrCode)
+    return id
   }catch(err){
     return Promise.reject(err)
   }
 }
 
-let deleteUser = (id) => {
+let deleteQrCode = (qrCodeCurso, idPeriodo) => {
   try{
-    return Promise.resolve(qrcode.deleteUser(id))
+    return Promise.resolve(qrcode.deleteQrCode(qrCodeCurso, idPeriodo))
   }catch(err){
     return Promise.reject(err)
   }
@@ -97,7 +97,7 @@ module.exports = {
   findPeriodoPorCurso,
   findPeriodo,
   register,
-  deleteUser,
+  deleteQrCode,
   dropAll, 
   update,
   updateUserValue
