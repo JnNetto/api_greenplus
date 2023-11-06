@@ -5,6 +5,7 @@ const config = require('./config');
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 const httpServer = createServer(app);
+var cors = require('cors');
 //const io = new Server(httpServer);
 const authServices = require("../api/core/services/auth_services");
 //const initRealTime = require("../api/realtime");
@@ -16,6 +17,13 @@ init.server = () => {
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(
+    cors({
+      origin: '*',
+      // Allow follow-up middleware to override this CORS for options
+      preflightContinue: true,
+    }),
+  );
 
   // io.on("connection", (socket) => {
   //   console.log("We are live and connected");

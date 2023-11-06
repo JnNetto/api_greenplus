@@ -57,9 +57,9 @@ let register = async (qrCodePeriodo, novoQrCode) =>  {
   }
 }
 
-let deleteQrCode = (qrCodeCurso, idPeriodo) => {
+let deleteQrCode = (idCurso, idPeriodo, idQrCode) => {
   try{
-    return Promise.resolve(qrcode.deleteQrCode(qrCodeCurso, idPeriodo))
+    return Promise.resolve(qrcode.deleteQrCode(idCurso, idPeriodo, idQrCode))
   }catch(err){
     return Promise.reject(err)
   }

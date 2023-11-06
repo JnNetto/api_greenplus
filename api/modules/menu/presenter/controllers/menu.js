@@ -1,11 +1,11 @@
 let modulosMenu = require('../../domain/usecase/get-menu/get-menu')
 let registerMenu = require('../../domain/usecase/register/register')
-
+const helper = require("../../../../core/helpers/response_body")
 const controller = {}
 
 controller.getAll = (req, res, next) => {
     modulosMenu.usecaseGetMenu().then(menu => {
-        res.status(200).send(menu)
+        res.status(200).send(helper.responseBodySuccess({data: menu}))
     }).catch(err => {
         res.status(500).send(err)
     })

@@ -2,12 +2,14 @@ const listaQrCodeByCursoAndPeriodo = {
     "1": {
       "1": [
         {
+          "id": "1",
           "content": "WIFI:T:WPA;S:SuaRedeWiFi;P:SuaSenha;;",
           "title": "WIFI DA PADARIA 0",
           "icon": "0xf051f",
           "type": "WiFi",
         },
         {
+          "id": "2",
           "content": "https://exemplo.com",
           "title": "Exemplo de Link 0",
           "icon": "0xf1234",

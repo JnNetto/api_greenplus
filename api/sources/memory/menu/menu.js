@@ -1,6 +1,6 @@
 const menu =[
     {
-      "title": "Calendário acadêmico",
+      "title": "Calendário",
       "action": "",
       "id":"1",
       "icon": "0xf051f"

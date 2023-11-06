@@ -1,4 +1,5 @@
-let Cursos = require('../../sources/memory/cursos')
+ //let Cursos = require('../../sources/memory/cursos')
+ let Cursos = require('../../sources/firebase/cursos')
 
 let listCursos = () => {
   try{

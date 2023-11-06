@@ -24,22 +24,25 @@ let findQrcode = (qrCodeCurso, idPeriodo) => {
 }
 
 let register = (qrCodePeriodo, novoQrCode) => {
+    var id = qrCodePeriodo.length+1;
+    novoQrCode.id = id;
     qrCodePeriodo.push(novoQrCode)
     return novoQrCode.id
 }
 
-let deleteQrCode = (qrCodeCurso, idPeriodo) => {
-    const qrcode = qrCodeCurso.find(qr => qr.id === idPeriodo)
-    console.log(qrcode)
-    if (qrcode) {
-        console.log(qrcode)
-        const index = qrCodeCurso.findIndex(qr => qr.id === idPeriodo)
-        qrCodeCurso.splice(index, 1)
+let deleteQrCode = (idCurso, idPeriodo, idQrCode) => {
+    qrcodeDb[idCurso][idPeriodo].find(qr => qr.id === idQrCode)
+    // const qrcode = qrCodeCurso.find(qr => qr.id === idPeriodo)
+    // console.log(qrcode)
+    // if (qrcode) {
+    //     console.log(qrcode)
+    //     const index = qrCodeCurso.findIndex(qr => qr.id === idPeriodo)
+    //     qrCodeCurso.splice(index, 1)
 
-        return qrcode.id
-    } else {
-        return null
-    }
+    //     return qrcode.id
+    // } else {
+    //     return null
+    // }
 }
 // let find = (prop, val) => {
 //         var user = qrcodeDb.find(user => user.username == val)

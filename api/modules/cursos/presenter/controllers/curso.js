@@ -1,6 +1,6 @@
 let getCourse = require('../../domain/usecase/get-cursos/get_curso')
 let registerCurso = require('../../domain/usecase/register/register');
-
+const helper = require("../../../../core/helpers/response_body")
 const controller = {}
 
 controller.getCurso = (req, res, next) => {
@@ -19,7 +19,7 @@ controller.getCurso = (req, res, next) => {
 
 controller.getAll = (req, res, next) => {
     getCourse.usecaseGetCursos().then(cursos => {
-        res.status(200).send(cursos)
+        res.status(200).send(helper.responseBodySuccess({data: cursos}))
     }).catch(err => {
         res.status(500).send(err)
     })
