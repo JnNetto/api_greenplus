@@ -3,7 +3,11 @@ let eventosDb = require('./eventos')
 
 
 let findAll = () => {
-    return eventosDb
+    let combinados = [];
+    for (let chave in eventosDb) {
+        combinados = combinados.concat(eventosDb[chave]);
+    }
+    return combinados;
 }
 
 let findEventosPorCurso = (id) => {
