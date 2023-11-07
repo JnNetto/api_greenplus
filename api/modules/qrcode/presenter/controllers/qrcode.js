@@ -6,40 +6,44 @@ const controller = {}
 
 controller.getAll = (req, res, next) => {
     getQrCode.usecaseGetQrcode().then(qrcode => {
-        res.status(200).send(qrcode)
+        res.status(200).send(helper.responseBodySuccess({code: qrcode}))
     }).catch(err => {
-        res.status(500).send(err)
+        res.status(500).send(helper.responseBodyInternalErro({}))
     })
 }
 
-// controller para pegar todos os Qrcodes de um curso
 
 controller.getQrcodeCurso = (req, res, next) => {
     let id = req.params.idcurso
 
-    getQrCode.getIdQrcodeCurso(id).then(qrcode => {
-        res.status(200).send(qrcode)
-    }).catch(err => {
-        res.status(500).send(err)
-    })
+    getQrCode.getIdQrcodeCurso(id).then(
+        qrcode => {
+            if (!qrcode || qrcode.length === 0) {
+                res.status(404).send(helper.responseBodyNotFound({}));
+            } else {
+                res.status(200).send(helper.responseBodySuccess({data: qrcode}));
+            }
+        }).catch(err => {
+            res.status(500).send(helper.responseBodyInternalErro({}))
+        })
 }
 
-//controller para pegaro Qrcode por periodo
 controller.getQrcodePeriodo = (req, res, next) => {
     let idCurso = req.params.idcurso;
     let idPeriodo = req.params.idperiodo
 
-    getQrCode.getQrcodePorPeriodo(idCurso, idPeriodo)
-        .then(
-            qrcode => {
-                if (!qrcode || qrcode.length === 0) {
-                    res.status(404).send(helper.responseBodyNotFound({ message: "Periodo não encontrado" }));
-                } else {
-                    res.send(helper.responseBodySuccess({ data: qrcode }));
-                }
-            }).catch(err => {
-                res.status(500).send("Erro interno")
-            })
+    getQrCode.getQrcodePorPeriodo(idCurso, idPeriodo).then(
+        qrcode => {
+            if (!qrcode || qrcode.length === 0) {
+                res.status(404).send(
+                    helper.responseBodyNotFound({})
+                );
+            } else {
+                res.status(200).send(helper.responseBodySuccess({ data: qrcode }));
+            }
+        }).catch(err => {
+            res.status(500).send(helper.responseBodyInternalErro({}))
+        })
 }
 
 controller.register = (req, res, next) => {
@@ -47,20 +51,29 @@ controller.register = (req, res, next) => {
     let idPeriodo = req.params.idperiodo
 
     postQrCode.registerQrCode(idCurso, idPeriodo, req.body).then(id => {
-        res.status(201).send(id)
+        if (id) {
+            res.status(201).send(helper.responseBodyCreated({ data: id }))
+        } else {
+            res.status(404).send(helper.responseBodyNotFound({}))
+        }
     }).catch(err => {
-        res.status(500).send(err)
+        res.status(500).send(helper.responseBodyInternalErro({}))
     })
 }
 
 controller.delete = (req, res, next) => {
     let idCurso = req.params.idcurso
     let idPeriodo = req.params.idperiodo
+    let idQrCode = req.params.idqrcode
 
-    deleteQrCode.deleteQrCode(idCurso, idPeriodo).then(id => {
-        res.status(201).send(id)
+    deleteQrCode.deleteQrCode(idCurso, idPeriodo, idQrCode).then(id => {
+        if (id){
+            res.status(204).send(helper.responseBodyNoContent({ data: id }))
+        } else {
+            res.status(404).send(helper.responseBodyNotFound({}))
+        }
     }).catch(err => {
-        res.status(500).send(err)
+        res.status(500).send(helper.responseBodyInternalErro({}))
     })
 }
 

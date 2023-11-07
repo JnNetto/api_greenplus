@@ -1,11 +1,9 @@
 //Use case get user
  let periodosDb = require('../../../../../reposotiry/periodos')
- let cursosDb = require('../../../../../reposotiry/cursos')
 
 let getPeriodoById = async(idCurso, idPeriodo) => {
     try {
-        const curso = await cursosDb.findIdCurso(idCurso)
-        const periodos = await periodosDb.findPeriodoPorCurso(curso)
+        const periodos = await periodosDb.findPeriodosDoCurso(idCurso)
         const periodo = await periodosDb.findPeriodo(periodos, idPeriodo)
 
         return periodo
@@ -24,8 +22,7 @@ let usecaseGetPeriodos = async () => {
 
 let getPeriodos = async(idCurso) => {
     try{
-        const curso = await cursosDb.findIdCurso(idCurso)
-        const periodos = await periodosDb.findPeriodoPorCurso(curso)
+        const periodos = await periodosDb.findPeriodosDoCurso(idCurso)
         
         return periodos
     } catch (err) {

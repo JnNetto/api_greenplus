@@ -1,6 +1,6 @@
-let db = require('../../../core/infra/db/firebase/firebase_config');
-
-let cursosRef = db.ref('cursos')
+// let db = require('../../../core/infra/db/firebase/firebase_config');
+let cursosDb = require('../../memory/cursos/cursos')
+// let cursosRef = db.ref('cursos')
 
 let find = (prop, val) => {
         var user = cursosDb.find(user => user.username == val)
@@ -35,9 +35,16 @@ let findIdCurso = (id) => {
     return idCurso ? idCurso.id : null
 }
 
-let register = (curso) => {
-    cursosDb.push(curso)
-    return curso.id;
+let register = (novoCurso) => {
+    if (novoCurso) {
+        var id = cursosDb.length + 1
+        novoCurso.id = id
+        cursosDb.push(novoCurso)
+        
+        return novoCurso.id
+    } else {
+        return null
+    }
 }
 
 let deleteUser = (id) => {

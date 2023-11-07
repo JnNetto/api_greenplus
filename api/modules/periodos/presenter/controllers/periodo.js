@@ -2,6 +2,30 @@ let getPeriodo = require('../../domain/usecase/get-periodos/get_periodo')
 const helper = require("../../../../core/helpers/response_body")
 const controller = {}
 
+
+controller.getAll = (req, res, next) => {
+    getPeriodo.usecaseGetPeriodos().then(cursos => {
+        res.status(200).send(helper.responseBodySuccess({data: cursos}))
+    }).catch(err => {
+        res.status(500).send(helper.responseBodyInternalErro({}))
+    })
+}
+
+controller.getPeriodosCurso = (req, res, next) => {
+    let id = req.params.idcurso
+    
+    getPeriodo.getPeriodos(id).then(
+        periodos => {
+            if (!periodos || periodos.length === 0) {
+                res.status(404).send(helper.responseBodyNotFound({}));
+            } else {
+                res.status(200).send(helper.responseBodySuccess({data: periodos}));
+            }
+        }).catch(err => {
+            res.status(500).send(helper.responseBodyInternalErro({}))
+        })
+}
+
 controller.getPeriodo = (req, res, next) => {
     let idCurso = req.params.id;
     let periodo = req.params.periodo
@@ -10,32 +34,13 @@ controller.getPeriodo = (req, res, next) => {
         .then(
             periodo => {
                 if (!periodo || periodo.length === 0) {
-                    res.status(404).send(helper.responseBodyNotFound({message: "Periodo não encontrado"}));
+                    res.status(404).send(helper.responseBodyNotFound({}));
                 } else {
-                    res.send(helper.responseBodySuccess({data: periodo}));
+                    res.status(200).send(helper.responseBodySuccess({data: periodo}));
                 }
             }).catch(err => {
-                res.status(500).send("Erro interno")
+                res.status(500).send(helper.responseBodyInternalErro({}))
             })
-}
-
-controller.getAll = (req, res, next) => {
-    getPeriodo.usecaseGetPeriodos().then(cursos => {
-        res.send(cursos)
-    }).catch(err => {
-        res.status(500).send(err)
-    })
-}
-
-controller.getPeriodosCurso = (req, res, next) => {
-    let id = req.params.idcurso
-
-    getPeriodo.getPeriodos(id).then(
-        periodos => {
-            res.send(periodos)
-        }).catch(err => {
-            res.status(500).send(err)
-        })
 }
 
 

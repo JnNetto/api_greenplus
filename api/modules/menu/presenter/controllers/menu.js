@@ -1,30 +1,36 @@
-let modulosMenu = require('../../domain/usecase/get-menu/get-menu')
-let registerMenu = require('../../domain/usecase/register/register')
+let getMenu = require('../../domain/usecase/get-menu/get-menu')
+let postMenu = require('../../domain/usecase/register/register')
 const helper = require("../../../../core/helpers/response_body")
 const controller = {}
 
 controller.getAll = (req, res, next) => {
-    modulosMenu.usecaseGetMenu().then(menu => {
+    getMenu.usecaseGetMenu().then(menu => {
         res.status(200).send(helper.responseBodySuccess({data: menu}))
     }).catch(err => {
-        res.status(500).send(err)
+        res.status(500).send(helper.responseBodyInternalErro({}))
     })
 }
 
 controller.getMenu = (req, res, next) => {
-    let id = req.params.idMenu
-    modulosMenu.getIdMenu(id).then(menu => {
-        res.status(200).send(menu)
-    }).catch(err => {
-        res.status(500).send(err)
-    })
+    let id = req.params.idmenu
+
+    getMenu.getIdMenu(id).then(
+        menu => {
+            if (!menu || menu.length === 0) {
+                res.status(404).send(helper.responseBodyNotFound({}));
+            } else {
+                res.status(200).send(helper.responseBodySuccess({data: menu}));
+            }
+        }).catch(err => {
+            res.status(500).send(helper.responseBodyInternalErro({}))
+        })
 }
 
 controller.registerMenu = (req, res, next) => {
-    registerMenu(req.body).then(id => {
-        res.status(201).send(id)
+    postMenu.registerMenu(req.body).then(id => {
+        res.status(201).send(helper.responseBodyCreated({data: id}))
     }).catch(err => {
-        res.status(500).send(err)
+        res.status(500).send(helper.responseBodyInternalErro({}))
     })}
 
 module.exports = controller

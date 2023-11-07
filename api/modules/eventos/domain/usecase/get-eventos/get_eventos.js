@@ -11,10 +11,9 @@ let usecaseGetEventos = async () => {
     })
 }
 
-let usecaseGetEventosCurso = async (idCurso) => {
+let getEventosCurso = async (idCurso) => {
     try {
-        const curso = await cursosDb.findIdCurso(idCurso)
-        const eventos = await eventosDb.findEventosPorCurso(curso)
+        const eventos = await eventosDb.findEventosPorCurso(idCurso)
 
         return eventos
     } catch (err) {
@@ -25,5 +24,5 @@ let usecaseGetEventosCurso = async (idCurso) => {
 
 module.exports = {
     usecaseGetEventos,
-    usecaseGetEventosCurso,
+    getEventosCurso,
 }

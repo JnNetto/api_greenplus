@@ -2,37 +2,37 @@ const menu =[
     {
       "title": "Calendário",
       "action": "",
-      "id":"1",
-      "icon": "0xf051f"
+      "icon": "0xf051f",
+      "id":"1"
     },{
       "title": "Horários",
       "action": "/horarios",
-      "id":"2",
-      "icon": "0xe821"
+      "icon": "0xe821",
+      "id":"2"
     },
     {
       "title": "Avisos",
       "action": "/avisos",
-      "id":"3",
-      "icon": "0xef11"
+      "icon": "0xef11",
+      "id":"3"
     },
     {
       "title": "Calendário de provas",
       "action": "/cursos",
-      "id":"4",
-      "icon": "0xf0401"
+      "icon": "0xf0401",
+      "id":"4"
     },
     {
       "title": "Eventos",
       "action": "/eventos",
-      "id":"5",
-      "icon": "0xe23e"
+      "icon": "0xe23e",
+      "id":"5"
     },
     {
       "title": "Qrcodes",
       "action": "/qrcode",
-      "id":"6",
-      "icon": "0xe4f5"
+      "icon": "0xe4f5",
+      "id":"6"
     },
   ]
 

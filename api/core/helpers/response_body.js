@@ -1,6 +1,6 @@
 const helper = {}
 
-helper.responseBodySuccess = ({code = 200, message = '', data = []}) => {
+helper.responseBodySuccess = ({code = 200, message = 'Sucesso', data = []}) => {
         return {
             'code': code,
             'message': message,
@@ -8,7 +8,7 @@ helper.responseBodySuccess = ({code = 200, message = '', data = []}) => {
         }
 }
 
-helper.responseBodyErro = ({code = 400, message = '', data = []}) => {
+helper.responseBodyCreated = ({code = 201, message = 'Criado', data = []}) => {
     return {
         'code': code,
         'message': message,
@@ -16,19 +16,35 @@ helper.responseBodyErro = ({code = 400, message = '', data = []}) => {
     }
 }
 
-helper.responseBodyNotFound = ({message = "Não encontrado"}) => {
+helper.responseBodyNoContent = ({code = 204, message = 'Remoção realizada', data = []}) => {
     return {
-        'code': 404,
+        'code': code,
         'message': message,
-        'data': []
+        'data': data
     }
 }
 
-helper.responseBodyInternalErro= (message) => {
+helper.responseBodyErro = ({code = 400, message = 'Solicitação inválida', data = []}) => {
     return {
-        'code': 500,
+        'code': code,
+        'message': message,
+        'data': data
+    }
+}
+
+helper.responseBodyNotFound = ({code = 404, message = 'Não encontrado', data = []}) => {
+    return {
+        'code': code,
+        'message': message,
+        'data': data
+    }
+}
+
+helper.responseBodyInternalErro = ({code = 500, message = 'Erro interno', data = []}) => {
+    return {
+        'code': code,
         'message': message ?? "Erro interno",
-        'data': []
+        'data': data
     }
 }
 

@@ -10,17 +10,17 @@ let findEventosPorCurso = (idCurso) => {
 
 let register = async (eventosCurso, novoEvento) =>  {
   try{
-    idEventoNovo = await eventosDb.register(eventosCurso, novoEvento)
+    var id = await eventosDb.register(eventosCurso, novoEvento)
 
-    return idEventoNovo
+    return id
   }catch(err){
     return Promise.reject(err)
   }
 }
 
-let deleteEvento = (eventosCurso, idEvento) => {
+let deleteEvento = (idCurso, idEvento) => {
   try{
-    return Promise.resolve(eventosDb.deleteEvento(eventosCurso, idEvento))
+    return Promise.resolve(eventosDb.deleteEvento(idCurso, idEvento))
   }catch(err){
     return Promise.reject(err)
   }

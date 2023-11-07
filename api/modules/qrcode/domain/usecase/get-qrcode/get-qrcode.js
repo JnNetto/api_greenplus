@@ -1,7 +1,5 @@
 let qrcodeDb = require('../../../../../reposotiry/qrcode')
-let cursosDb = require('../../../../../reposotiry/cursos')
 
-//Use case get menu (list all qrcode)
 let usecaseGetQrcode = async () => {
     return qrcodeDb.listQrcode().then(qrcode => {
         return qrcode
@@ -12,8 +10,7 @@ let usecaseGetQrcode = async () => {
 
 let getIdQrcodeCurso = async (id) => {
     try{
-        const curso = await cursosDb.findIdCurso(id)
-        const qrCode = await qrcodeDb.findIdQrcodeCurso(curso)
+        const qrCode = await qrcodeDb.findIdQrcodeCurso(id)
         
         return qrCode
     } catch (err) {
@@ -23,8 +20,7 @@ let getIdQrcodeCurso = async (id) => {
 
 let getQrcodePorPeriodo = async(idCurso, idPeriodo) => {
     try {
-        const curso = await cursosDb.findIdCurso(idCurso)
-        const qrCodeCurso = await qrcodeDb.findIdQrcodeCurso(curso)
+        const qrCodeCurso = await qrcodeDb.findIdQrcodeCurso(idCurso)
         const qrCodePeriodo = await qrcodeDb.findQrcode(qrCodeCurso, idPeriodo)
 
         return qrCodePeriodo

@@ -20,20 +20,38 @@ let findEventosPorCurso = (id) => {
 }
 
 let register = (eventosCurso, novoEvento) => {
-    eventosCurso.push(novoEvento)
-    return novoEvento.id
-}
+    if (eventosCurso && novoEvento) {
+        var id = eventosCurso.length + 1
+        novoEvento.id = id
+        eventosCurso.push(novoEvento)
 
-let deleteEvento = (eventosCurso, idEvento) => {
-    const evento = eventosCurso.find(evento => evento.id === idEvento)
-    if (evento) {
-        const index = eventosCurso.findIndex(evento => evento.id === idEvento)
-        eventosCurso.splice(index, 1)
-        console.log(eventosCurso)
-
-        return evento.id
+        return novoEvento.id
     } else {
         return null
+    }
+}
+
+let deleteQrCode = (idCurso, idPeriodo, idQrCode) => {
+    let eventosCurso = qrcodeDb[idCurso][idPeriodo];
+    let eventoIndex = eventosCurso.findIndex(qr => qr.id === idQrCode);
+
+    if (eventoIndex !== -1) {
+        eventosCurso.splice(eventoIndex, 1);
+        return idQrCode;
+    } else {
+        return null;
+    }
+}
+
+let deleteEvento = (idCurso, idEvento) => {
+    let eventosCurso = eventosDb[idCurso];
+    let eventoIndex = eventosCurso.findIndex(evento => evento.id === idEvento);
+
+    if (eventoIndex !== -1) {
+        eventosCurso.splice(eventoIndex, 1);
+        return idEvento;
+    } else {
+        return null;
     }
 }
 // let find = (prop, val) => {

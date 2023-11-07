@@ -3,8 +3,7 @@ let cursosDb = require('../../../../../reposotiry/cursos')
 
 let registerQrCode = async (idCurso, idPeriodo, novoQrCode) => {
     try {
-        const curso = await cursosDb.findIdCurso(idCurso)
-        const qrCodeCurso = await qrcodeDb.findIdQrcodeCurso(curso)
+        const qrCodeCurso = await qrcodeDb.findIdQrcodeCurso(idCurso)
         const qrCodePeriodo = await qrcodeDb.findQrcode(qrCodeCurso, idPeriodo)
         const id = await qrcodeDb.register(qrCodePeriodo, novoQrCode)
 

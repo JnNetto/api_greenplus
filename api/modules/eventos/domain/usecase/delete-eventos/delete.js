@@ -4,9 +4,7 @@ const cursosDb = require('../../../../../reposotiry/cursos')
 //retorna o id do evento registrado
 let deleteEvento = async (idCurso, idEvento) => {
     try {
-        const curso = await cursosDb.findIdCurso(idCurso)
-        const eventosCurso = await eventosDb.findEventosPorCurso(curso)
-        const id = await eventosDb.deleteEvento(eventosCurso, idEvento)
+        const id = await eventosDb.deleteEvento(idCurso, idEvento)
 
         return id
     } catch (err) {

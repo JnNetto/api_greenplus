@@ -42,8 +42,8 @@ let findPeriodo = (periodos, idPeriodo) => {
 
 let register = async (menu) =>  {
   try{
-    menu = await Menu.register(menu)
-    return menu
+    var id = await Menu.register(menu)
+    return id
   }catch(err){
     return Promise.reject(err)
   }
