@@ -8,7 +8,7 @@ controller.getAll = (req, res, next) => {
     getCourse.usecaseGetCursos().then(cursos => {
         res.status(200).send(helper.responseBodySuccess({data: cursos}))
     }).catch(err => {
-        res.status(500).send(helper.responseBodyInternalErro({}))
+        res.status(500).send(helper.responseBodyInternalErro({err}))
     })
 }
 

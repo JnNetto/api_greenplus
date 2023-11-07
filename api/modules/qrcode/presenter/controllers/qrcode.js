@@ -6,9 +6,9 @@ const controller = {}
 
 controller.getAll = (req, res, next) => {
     getQrCode.usecaseGetQrcode().then(qrcode => {
-        res.status(200).send(helper.responseBodySuccess({code: qrcode}))
+        res.status(200).send(helper.responseBodySuccess({data: qrcode}))
     }).catch(err => {
-        res.status(500).send(helper.responseBodyInternalErro({}))
+        res.status(500).send(helper.responseBodyInternalErro({err}))
     })
 }
 

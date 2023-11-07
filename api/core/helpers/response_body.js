@@ -32,6 +32,22 @@ helper.responseBodyErro = ({code = 400, message = 'Solicitação inválida', dat
     }
 }
 
+helper.responseBodyNotLogin = ({code = 401, message = 'Você não está logado', data = []}) => {
+    return {
+        'code': code,
+        'message': message,
+        'data': data
+    }
+}
+
+helper.responseBodyNotToken = ({code = 403, message = 'Token é obrigatório para autenticação', data = []}) => {
+    return {
+        'code': code,
+        'message': message,
+        'data': data
+    }
+}
+
 helper.responseBodyNotFound = ({code = 404, message = 'Não encontrado', data = []}) => {
     return {
         'code': code,

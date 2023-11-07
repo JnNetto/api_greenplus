@@ -4,7 +4,7 @@ const auth = require('../../../../core/middleware/auth')
 
 const qrcode = require('../controllers/qrcode')
 
-router.get('/allqrcode', auth , qrcode.getAll)
+router.get('/all', auth , qrcode.getAll)
 router.get('/:idcurso', auth , qrcode.getQrcodeCurso)
 router.get('/:idcurso/:idperiodo', auth, qrcode.getQrcodePeriodo)
 router.post('/register/:idcurso/:idperiodo', auth , qrcode.register)

@@ -6,13 +6,14 @@ let usecaseLogin = require('../../domain/usecase/login/login')
 let userSchema = require('../../domain/entities/user-schema')
 let userValidator = require('../../../../core/validator/')
 const authServices = require("../../../../core/services/auth_services")
+const helper = require('../../../../core/helpers/response_body')
 const controller = {}
 
 controller.getAll = (req, res, next) => {
     usecaseGetUsers().then(users => {
-        res.send(users)
+        res.send(helper.responseBodySuccess({data:users}))
     }).catch(err => {
-        res.status(500).send(err)
+        res.status(500).send(helper.responseBodyInternalErro({data:err}))
     })
 }
 
@@ -20,9 +21,9 @@ controller.findUser = (req, res, next) => {
     const token = req.body.token || req.query.token || req.headers["authorization"];
     let user = authServices.decodeToken(token);
     getUserByUserName('username', user.username).then(user => {
-        res.json({data: user})
+        res.json(helper.responseBodySuccess({data:user}))
     }).catch(err => {
-        res.status(500).json(err)
+        res.status(500).json(helper.responseBodyInternalErro({data:err}))
     }
     )
 }
@@ -32,9 +33,9 @@ controller.updateUserValue = (req, res, next) => {
     let email = authServices.decodeToken(token).email;
     const { key, value } = req.body
     usecaseUpdateUserValue({email, key, value}).then(result => {
-        res.json({data: result})
+        res.json(helper.responseBodySuccess({data:result}))
     }).catch(err => {
-        res.status(500).json(err)
+        res.status(500).json(helper.responseBodyInternalErro({err}))
     }
     )
 }
@@ -44,10 +45,10 @@ controller.register = (req, res, next) => {
         userValidator(userSchema)(req.body)
         usecaseGetUser('email', req.body.email).then(user => {
             if (user) {
-                res.status(400).json({ message: 'Usuário já cadastrado'})
+                res.status(400).json(helper.responseBodyErro({message:'Usuário já cadastrado'}))
             } else {
                 usercaseRegisterUser(req.body).then(user => {
-                    res.json({data: user})
+                    res.json(helper.responseBodySuccess({data:user}))
                 }).catch(err => {
                     //res.status(400).json({ message: err.message })
                     throw err
@@ -59,7 +60,7 @@ controller.register = (req, res, next) => {
         }
         )
     } catch (err) {
-        res.status(400).json({ message: err.message })
+        res.status(400).json(helper.responseBodyErro({}))
     }
 }
 
@@ -68,16 +69,16 @@ controller.login = (req, res, next) => {
     const { username, password } = req.body
 
     if (!(username) && !(password)) {
-        res.status(400).json("Username e senha são obrigatórios");
+        res.status(400).json(helper.responseBodyErro({message:'username e senha são obrigatórios'}));
     }
     
     usecaseLogin({username, password }).then(token => {
         res.json({token: token})
     }).catch(err => {
         if (err.message === 'CreditalInvalidError') {
-            res.status(400).json({ "message": "Credenciais inválidas" })
+            res.status(400).json(helper.responseBodyErro({message:'Credenciais inválidas'}))
         } else {
-            res.status(500).json({ "message": err.message })
+            res.status(500).json(helper.responseBodyInternalErro({}))
         }
     }
     )
