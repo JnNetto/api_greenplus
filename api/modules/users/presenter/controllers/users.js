@@ -69,9 +69,8 @@ controller.login = (req, res, next) => {
     const { username, password } = req.body
 
     if (!(username) && !(password)) {
-        res.status(400).json(helper.responseBodyErro({message:'username e senha são obrigatórios'}));
+        res.status(400).json(helper.responseBodyErro({message:'username e password são obrigatórios'}));
     }
-    
     usecaseLogin({username, password }).then(token => {
         res.json({token: token})
     }).catch(err => {

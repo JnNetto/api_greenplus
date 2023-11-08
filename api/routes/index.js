@@ -6,6 +6,7 @@ module.exports = (app) => {
     app.use('/menu', require('../modules/menu/presenter/routes'));
     app.use('/qrcode', require('../modules/qrcode/presenter/routes'));
     app.use('/eventos', require('../modules/eventos/presenter/routes'));
+    app.use('/horarios', require('../modules/horarios/presenter/routes'));
     // app.use('/socket', (req, res) => {
     //     //const socket = io('http://localhost:3001');
     //     //deve redirecionar para o socket e abrir a conexão

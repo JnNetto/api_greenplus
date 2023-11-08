@@ -1,38 +1,29 @@
-const getEventos = require('../../domain/usecase/get-eventos/get_eventos')
-const deleteEventos = require('../../../eventos/domain/usecase/delete-eventos/delete')
-const postEvento = require('../../../eventos/domain/usecase/register-eventos/register')
+const getHorarios = require('../../domain/usecase/get-horarios/get_horarios')
+const putHorarios = require('../../../horarios/domain/usecase/put-horarios/put_horarios')
 const helper = require("../../../../core/helpers/response_body")
 
 const controller = {}
 
-controller.getAllEventos = (req, res, next) => {
-    getEventos.usecaseGetEventos().then(eventos => {
-        res.status(200).send(helper.responseBodySuccess({data: eventos}))
-    }).catch(err => {
-        res.status(500).send(helper.responseBodyInternalErro({}))
-    })
-}
-
-controller.getEventosCurso = (req, res, next) => {
+controller.getHorariosCurso = (req, res, next) => {
     let id = req.params.idcurso
-
-    getEventos.getEventosCurso(id).then(
-        eventos => {
-            if (!eventos || eventos.length === 0) {
+    getHorarios.getHorariosCurso(id).then(
+        horarios => {
+            if (!horarios || horarios.length === 0) {
                 res.status(404).send(helper.responseBodyNotFound({}));
             } else {
-                res.status(200).send(helper.responseBodySuccess({data: eventos}));
+                res.status(200).send(helper.responseBodySuccess({data: horarios}));
             }
         }).catch(err => {
             res.status(500).send(helper.responseBodyInternalErro({}))
         })
 }
 
-controller.register = (req, res, next) => {
-    let id = req.params.idcurso
-    postEvento.registerEvento(id, req.body).then(id => {
+controller.substituirHorario = (req, res, next) => {
+    let id= req.params.idcurso
+
+    putHorarios.substituirHorario(id,req.body).then(id => {
         if (id) {
-            res.status(201).send(helper.responseBodyCreated({data: id}))
+            res.status(201).send(helper.responseBodyCreated({data: horarios}))
         } else {
             res.status(400).send(helper.responseBodyNotFound({}))
         }

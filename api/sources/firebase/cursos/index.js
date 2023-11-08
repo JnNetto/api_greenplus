@@ -1,6 +1,6 @@
-// let db = require('../../../core/infra/db/firebase/firebase_config');
-let cursosDb = require('../../memory/cursos/cursos')
-// let cursosRef = db.ref('cursos')
+let db = require('../../../core/infra/db/firebase/firebase_config');
+//let cursosDb = require('../../memory/cursos/cursos')
+let cursosRef = db.ref('cursos')
 
 let find = (prop, val) => {
         var user = cursosDb.find(user => user.username == val)
