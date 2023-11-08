@@ -21,6 +21,7 @@ let findEventosPorCurso = (id) => {
 
 let register = (eventosCurso, novoEvento) => {
     if (eventosCurso && novoEvento) {
+        console.log(novoEvento); 
         var id = eventosCurso.length + 1
         novoEvento.id = id
         eventosCurso.push(novoEvento)

@@ -8,9 +8,9 @@ let findHorariosPorCurso = (idCurso) => {
   }
 }
 
-let register = async (horariosCurso, novoHorario) =>  {
+let register = async (idCurso, novoHorario) =>  {
   try{
-    var id = await horariosDb.put_horario(horariosCurso, novoHorario)
+    var id = await horariosDb.put_horario(idCurso, novoHorario)
     return id
   }catch(err){
     return Promise.reject(err)

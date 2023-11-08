@@ -6,7 +6,7 @@ const eventos = require('../controllers/eventos')
 
 router.get('/all', auth, eventos.getAllEventos)
 router.get('/:idcurso', auth, eventos.getEventosCurso)
-router.post('/register/:idcurso', auth, eventos.register)
+router.post('/register/:idcurso', auth, eventos.register) 
 router.delete('/delete/:idcurso/:idevento', auth, eventos.delete)
 
 module.exports = router

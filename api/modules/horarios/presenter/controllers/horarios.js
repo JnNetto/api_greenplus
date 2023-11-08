@@ -23,7 +23,7 @@ controller.substituirHorario = (req, res, next) => {
 
     putHorarios.substituirHorario(id,req.body).then(id => {
         if (id) {
-            res.status(201).send(helper.responseBodyCreated({data: horarios}))
+            res.status(200).send(helper.responseBodyCreated({data: horarios}))
         } else {
             res.status(400).send(helper.responseBodyNotFound({}))
         }

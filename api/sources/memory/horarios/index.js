@@ -10,11 +10,13 @@ let findHorariosPorCurso = (id) => {
     }
 }
 
-let put_horario = (req,res,novoHorario) => {
-    let id = req.params.idCurso
-    novoHorario = horariosDb[id].id = req.body.id
-    horariosDb.put(novoHorario)
-    
+let put_horario = (idCurso, novoHorario) => {
+    try {
+        horariosDb[idCurso] = novoHorario
+        return novoHorario  
+    } catch (error) {
+        return null;
+    }
 }
 
 let register = (eventosCurso, novoEvento) => {
