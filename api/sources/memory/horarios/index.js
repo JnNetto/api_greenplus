@@ -15,7 +15,7 @@ let put_horario = (idCurso, novoHorario) => {
         horariosDb[idCurso] = novoHorario
         return novoHorario  
     } catch (error) {
-        return null;
+        return null
     }
 }
 

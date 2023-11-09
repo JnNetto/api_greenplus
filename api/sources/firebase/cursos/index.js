@@ -26,10 +26,18 @@ let findAll = async () => {
     })
 }
 
-let findId = (id) => {
-    return cursosDb.filter(curso => curso.id == id)
-}
+// let findId = (id) => {
+//     return cursosDb.filter(curso => curso.id == id)
+// }
 
+let findId = (id) => {
+    return cursosRef.child(id).once('value')
+      .then(snapshot => {
+        const curso = snapshot.val();
+        return curso
+      })
+    }
+  
 let findIdCurso = (id) => {
     const idCurso = cursosDb.find(curso => curso.id == id)
     return idCurso ? idCurso.id : null

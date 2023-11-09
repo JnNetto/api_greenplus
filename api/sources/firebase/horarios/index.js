@@ -20,11 +20,6 @@ let findHorariosPorCurso = (id) => {
 //     }
 // }
 
-let put_horario = async (idCurso, novoHorario) => {
-    return await horariosRef.child(idCurso).update(novoHorario).then(snapshot => {
-        return novoHorario
-    })
-}
 
 module.exports = {
     findHorariosPorCurso,
