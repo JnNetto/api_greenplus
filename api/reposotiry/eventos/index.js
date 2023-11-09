@@ -1,4 +1,4 @@
-let eventosDb = require('../../sources/memory/eventos')
+let eventosDb = require('../../sources/firebase/eventos')
 
 let findEventosPorCurso = (idCurso) => {
   try{

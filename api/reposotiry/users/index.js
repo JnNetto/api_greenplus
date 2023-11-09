@@ -1,4 +1,4 @@
-let User = require('../../sources/memory/user/index')
+let User = require('../../sources/firebase/users')
 
 let listUsers = () => {
   try{

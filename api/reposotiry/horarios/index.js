@@ -1,4 +1,4 @@
-let horariosDb = require('../../sources/memory/horarios')
+let horariosDb = require('../../sources/firebase/horarios')
 
 let findHorariosPorCurso = (idCurso) => {
   try{

@@ -1,4 +1,4 @@
-let qrcode = require('../../sources/memory/qrcode')
+let qrcode = require('../../sources/firebase/qrcode')
 
 let listQrcode = () => {
   try{

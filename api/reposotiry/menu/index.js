@@ -1,4 +1,4 @@
-let Menu = require('../../sources/memory/menu')
+let Menu = require('../../sources/firebase/menu')
 
 let listMenu = () => {
   try{

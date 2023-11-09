@@ -1,4 +1,4 @@
-let periodosDb = require('../../sources/memory/periodos')
+let periodosDb = require('../../sources/firebase/periodos')
 
 let listPeriodos = () => {
   try{
