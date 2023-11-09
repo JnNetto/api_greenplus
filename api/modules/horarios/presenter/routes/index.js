@@ -5,6 +5,6 @@ const auth = require('../../../../core/middleware/auth')
 const eventos = require('../controllers/horarios')
 
 router.get('/:idcurso', auth, eventos.getHorariosCurso)
-router.put('/sub/:idcurso', auth, eventos.substituirHorario)
+router.put('/sub/:idcurso', eventos.substituirHorario)
 
 module.exports = router

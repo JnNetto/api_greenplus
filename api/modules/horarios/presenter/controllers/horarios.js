@@ -21,13 +21,14 @@ controller.getHorariosCurso = (req, res, next) => {
 controller.substituirHorario = (req, res, next) => {
     let id= req.params.idcurso
 
-    putHorarios.substituirHorario(id,req.body).then(id => {
+    putHorarios.substituirHorario(id,req.body.pdf).then(result => {
         if (id) {
-            res.status(200).send(helper.responseBodyCreated({data: horarios}))
+            res.status(200).send(helper.responseBodyCreated({data: result}))
         } else {
             res.status(400).send(helper.responseBodyNotFound({}))
         }
     }).catch(err => {
+        console.log(err)
         res.status(500).send(helper.responseBodyInternalErro({}))
     })
 }
