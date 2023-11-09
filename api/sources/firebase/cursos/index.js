@@ -9,7 +9,7 @@ let find = (prop, val) => {
         } else {
             return new Error('User not found')
         }
-    }
+}
 
 // let find = (prop, val) => {
 //     var user = userDb.find(user => user[prop] === val)
