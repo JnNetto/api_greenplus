@@ -11,18 +11,15 @@ let findAll = () => {
     return combinados;
 }
 
-let findEventosPorCurso = (id) => {
-    const eventos = eventosRef[id]
-    if (eventos) {
-        return eventos
-    } else {
-        return null
-    }
+let findEventosPorCurso = async (id) => {
+    const snapshot = await eventosRef.child(id).once('value')
+    const evento = snapshot.val()
+    return evento
 }
 
 let register = (eventosCurso, novoEvento) => {
     if (eventosCurso && novoEvento) {
-        console.log(novoEvento); 
+        console.log(novoEvento);
         var id = eventosCurso.length + 1
         novoEvento.id = id
         eventosCurso.push(novoEvento)

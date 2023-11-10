@@ -3,12 +3,12 @@ let db = require('../../../core/infra/db/firebase/firebase_config');
 let cursosRef = db.ref('cursos')
 
 let find = (prop, val) => {
-        var user = cursosDb.find(user => user.username == val)
-        if (user) {
-            return user
-        } else {
-            return new Error('User not found')
-        }
+    var user = cursosDb.find(user => user.username == val)
+    if (user) {
+        return user
+    } else {
+        return new Error('User not found')
+    }
 }
 
 // let find = (prop, val) => {
@@ -30,14 +30,12 @@ let findAll = async () => {
 //     return cursosDb.filter(curso => curso.id == id)
 // }
 
-let findId = (id) => {
-    return cursosRef.child(id).once('value')
-      .then(snapshot => {
-        const curso = snapshot.val();
-        return curso
-      })
-    }
-  
+let findId = async (id) => {
+    const snapshot = await cursosRef.child(id).once('value')
+    const curso = snapshot.val()
+    return curso
+}
+
 let findIdCurso = (id) => {
     const idCurso = cursosDb.find(curso => curso.id == id)
     return idCurso ? idCurso.id : null
@@ -48,7 +46,7 @@ let register = (novoCurso) => {
         var id = cursosDb.length + 1
         novoCurso.id = id
         cursosDb.push(novoCurso)
-        
+
         return novoCurso.id
     } else {
         return null
@@ -63,7 +61,7 @@ let deleteUser = (id) => {
             message: 'User deleted',
         }
     } else {
-       return new Error('User not found')
+        return new Error('User not found')
     }
 }
 
@@ -100,6 +98,6 @@ module.exports = {
     findIdCurso,
     register,
     deleteUser,
-    dropAll, 
+    dropAll,
     update
 }
