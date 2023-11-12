@@ -1,5 +1,4 @@
 let db = require('../../../core/infra/db/firebase/firebase_config');
-//let cursosDb = require('../../memory/cursos/cursos')
 let qrcodeRef = db.ref('qrcode')
 
 
@@ -9,13 +8,10 @@ let findAll = async () => {
     })
 }
 
-let findIdQrcodeCurso = (id) => {
-    const qrCode = qrcodeRef[id]
-    if (qrCode) {
-        return qrCode
-    } else {
-        return null
-    }
+let findIdQrcode = async (id) => {
+    const snapshot = await qrcodeRef.child(id).once('value')
+    const qrcode = snapshot.val()
+    return qrcode
 }
 
 let findQrcode = (qrCodeCurso, idPeriodo) => {
@@ -121,7 +117,7 @@ let deleteQrCode = (idCurso, idPeriodo, idQrCode) => {
 module.exports = {
     findAll,
     findQrcode,
-    findIdQrcodeCurso,
+    findIdQrcode,
     register,
     deleteQrCode,
     // find,

@@ -1,5 +1,4 @@
 let db = require('../../../core/infra/db/firebase/firebase_config');
-//let cursosDb = require('../../memory/cursos/cursos')
 let periodosRef = db.ref('periodos')
 
 let findAll = async () => {
@@ -8,13 +7,10 @@ let findAll = async () => {
     })
 }
 
-let findPeriodosDoCurso = (id) => {
-    const periodo = periodosRef[id]
-    if (periodo) {
-        return periodo
-    } else {
-        return null
-    }
+let findPeriodosDoCurso = async (id) => {
+    const snapshot = await periodosRef.child(id).once('value')
+    const periodo = snapshot.val()
+    return periodo
 }
 
 let findPeriodo = (periodos, idPeriodo) => {

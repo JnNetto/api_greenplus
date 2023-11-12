@@ -1,5 +1,4 @@
 let db = require('../../../core/infra/db/firebase/firebase_config');
-//let cursosDb = require('../../memory/cursos/cursos')
 let menuRef = db.ref('menu')
 
 let findAll = async () => {

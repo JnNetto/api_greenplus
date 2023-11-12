@@ -1,14 +1,11 @@
 let db = require('../../../core/infra/db/firebase/firebase_config');
-//let cursosDb = require('../../memory/cursos/cursos')
 let eventosRef = db.ref('eventos')
 
 
-let findAll = () => {
-    let combinados = [];
-    for (let chave in eventosRef) {
-        combinados = combinados.concat(eventosRef[chave]);
-    }
-    return combinados;
+let findAll = async () => {
+    return await eventosRef.once('value').then(snapshot => {
+        return snapshot.val()
+    })
 }
 
 let findEventosPorCurso = async (id) => {
@@ -27,18 +24,6 @@ let register = (eventosCurso, novoEvento) => {
         return novoEvento.id
     } else {
         return null
-    }
-}
-
-let deleteQrCode = (idCurso, idPeriodo, idQrCode) => {
-    let eventosCurso = qrcodeDb[idCurso][idPeriodo];
-    let eventoIndex = eventosCurso.findIndex(qr => qr.id === idQrCode);
-
-    if (eventoIndex !== -1) {
-        eventosCurso.splice(eventoIndex, 1);
-        return idQrCode;
-    } else {
-        return null;
     }
 }
 

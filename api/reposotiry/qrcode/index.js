@@ -8,9 +8,9 @@ let listQrcode = () => {
   }
 }
 
-let findIdQrcodeCurso = (id) => {
+let findIdQrcode = (id) => {
   try{
-    return Promise.resolve(qrcode.findIdQrcodeCurso(id))
+    return Promise.resolve(qrcode.findIdQrcode(id))
   }catch(err){
     return Promise.reject(err)
   }
@@ -91,7 +91,7 @@ let deleteQrCode = (idCurso, idPeriodo, idQrCode) => {
 
 module.exports = {
   listQrcode,
-  findIdQrcodeCurso,
+  findIdQrcode,
   findQrcode,
   register,
   deleteQrCode,
