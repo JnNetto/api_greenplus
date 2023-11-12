@@ -4,7 +4,7 @@ module.exports = (app) => {
     app.use('/cursos', require('../modules/cursos/presenter/routes'));
     app.use('/periodos', require('../modules/periodos/presenter/routes'));
     app.use('/menu', require('../modules/menu/presenter/routes'));
-    app.use('/qrcode', require('../modules/qrcode/presenter/routes'));
+    app.use('/qrcodes', require('../modules/qrcode/presenter/routes'));
     app.use('/eventos', require('../modules/eventos/presenter/routes'));
     app.use('/horarios', require('../modules/horarios/presenter/routes'));
     // app.use('/socket', (req, res) => {
