@@ -16,17 +16,17 @@ let findIdQrcode = (id) => {
   }
 }
 
-let findQrcode = (qrCodeCurso, idPeriodo) => {
+let findQrcode = (idCurso, idPeriodo) => {
   try {
-    return Promise.resolve(qrcode.findQrcode(qrCodeCurso, idPeriodo))
+    return Promise.resolve(qrcode.findQrcode(idCurso, idPeriodo))
   } catch(err) {
     return Promise.reject(err)
   }
 }
 
-let register = async (qrCodePeriodo, novoQrCode) =>  {
+let register = async (idCurso, idPeriodo, novoQrCode) =>  {
   try{
-    id = await qrcode.register(qrCodePeriodo, novoQrCode)
+    id = await qrcode.register(idCurso, idPeriodo, novoQrCode)
     return id
   }catch(err){
     return Promise.reject(err)

@@ -42,6 +42,7 @@ controller.getQrcodePeriodo = (req, res, next) => {
                 res.status(200).send(helper.responseBodySuccess({ data: qrcode }));
             }
         }).catch(err => {
+            console.log(err)
             res.status(500).send(helper.responseBodyInternalErro({}))
         })
 }

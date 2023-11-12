@@ -20,8 +20,8 @@ let getIdQrcodeCurso = async (id) => {
 
 let getQrcodePorPeriodo = async(idCurso, idPeriodo) => {
     try {
-        const qrCodeCurso = await qrcodeDb.findIdQrcode(idCurso)
-        const qrCodePeriodo = await qrcodeDb.findQrcode(qrCodeCurso, idPeriodo)
+    
+        const qrCodePeriodo = await qrcodeDb.findQrcode(idCurso, idPeriodo)
         
         return qrCodePeriodo
     } catch (err) {

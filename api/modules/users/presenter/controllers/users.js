@@ -1,4 +1,4 @@
-// let usercaseRegisterUser = require('../../domain/usecase/register-user/register_user')
+let usercaseRegisterUser = require('../../domain/usecase/register-user/register_user')
 let getUserByUserName = require('../../domain/usecase/get-users/get_user')
 // let usecaseGetUsers = require('../../domain/usecase/get-users/get_users')
 let usecaseUpdateUserValue = require('../../domain/usecase/update-user/update')
@@ -43,7 +43,7 @@ controller.updateUserValue = (req, res, next) => {
 controller.register = (req, res, next) => {
     try {
         userValidator(userSchema)(req.body)
-        usecaseGetUser('email', req.body.email).then(user => {
+        getUserByUserName('username', req.body.username).then(user => {
             if (user) {
                 res.status(400).json(helper.responseBodyErro({message:'Usuário já cadastrado'}))
             } else {
@@ -60,6 +60,7 @@ controller.register = (req, res, next) => {
         }
         )
     } catch (err) {
+        console.log(err)
         res.status(400).json(helper.responseBodyErro({}))
     }
 }

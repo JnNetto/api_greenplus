@@ -4,7 +4,8 @@ let qrcodeRef = db.ref('qrcode')
 
 let findAll = async () => {
     return await qrcodeRef.once('value').then(snapshot => {
-    return snapshot.val()
+
+        return snapshot.val()
     })
 }
 
@@ -14,25 +15,22 @@ let findIdQrcode = async (id) => {
     return qrcode
 }
 
-let findQrcode = (qrCodeCurso, idPeriodo) => {
-    const qrCode = qrCodeCurso[idPeriodo]
-    if (qrCode) {
-        return qrCode
-    } else {
-        return null
-    }
+let findQrcode = async (idCurso, idPeriodo) => {
+    return await qrcodeRef.child(idCurso + "/" + idPeriodo).once('value').then(snapshot => {
+        var qrcodes = [];
+        snapshot.forEach(childSnapshot => {
+            qr = childSnapshot.toJSON();
+            qrcodes.push(qr)
+        })
+        return qrcodes;
+    })
 }
 
-let register = (qrCodePeriodo, novoQrCode) => {
-    if (qrCodePeriodo && novoQrCode) {
-        var id = qrCodePeriodo.length + 1
-        novoQrCode.id = id
-        qrCodePeriodo.push(novoQrCode)
-        
-        return novoQrCode.id
-    } else {
-        return null
-    }
+let register = async (idCurso, idPeriodo, novoQrCode) => {
+    novoQrCode.id = qrcodeRef.push().key;
+    return await qrcodeRef.child(idCurso + "/" + idPeriodo + "/" + novoQrCode.id).update(novoQrCode).then(snapshot => {
+        return novoQrCode
+    })
 }
 
 let deleteQrCode = (idCurso, idPeriodo, idQrCode) => {
