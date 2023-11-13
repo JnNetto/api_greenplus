@@ -1,33 +1,46 @@
-let db = require('../../../core/infra/db/firebase/firebase_config');
-let eventosRef = db.ref('eventos')
-
+let db = require("../../../core/infra/db/firebase/firebase_config");
+let eventosRef = db.ref("eventos");
 
 let findAll = async () => {
-    return await eventosRef.once('value').then(snapshot => {
-        return snapshot.val()
-    })
-}
+  return await eventosRef.once("value").then((snapshot) => {
+    return snapshot.val();
+  });
+};
 
-let findEventosPorCurso = async (id) => {
-    const snapshot = await eventosRef.child(id).once('value')
-    const evento = snapshot.val()
-    return evento
-}
+let findEventosPorCurso = async (idCurso) => {
+  return await eventosRef
+    .child(idCurso)
+    .once("value")
+    .then((snapshot) => {
+      var evento = [];
+      snapshot.forEach((childSnapshot) => {
+        qr = childSnapshot.toJSON();
+        evento.push(qr);
+      });
+      return evento;
+    });
+};
 
 let register = async (idCurso, novoEvento) => {
-    console.log(idCurso)
-    console.log(novoEvento)
-    novoEvento.id = eventosRef.push().key;
-    return await eventosRef.child(idCurso + "/" + novoEvento.id).update(novoEvento).then(snapshot => {
-        return novoEvento
-    })
-}
+  console.log(idCurso);
+  console.log(novoEvento);
+  novoEvento.id = eventosRef.push().key;
+  return await eventosRef
+    .child(idCurso + "/" + novoEvento.id)
+    .update(novoEvento)
+    .then((snapshot) => {
+      return novoEvento;
+    });
+};
 
 let deleteEvento = async (idCurso, idEvento) => {
-    return await eventosRef.child(idCurso + "/" + idEvento).remove().then(snapshot => {
-        return idEvento
-    })
-  }
+  return await eventosRef
+    .child(idCurso + "/" + idEvento)
+    .remove()
+    .then((snapshot) => {
+      return idEvento;
+    });
+};
 
 // let find = (prop, val) => {
 //     var user = eventosDb.find(user => user.username == val)
@@ -84,12 +97,12 @@ let deleteEvento = async (idCurso, idEvento) => {
 // }
 
 module.exports = {
-    findAll,
-    findEventosPorCurso,
-    register,
-    deleteEvento,
-    // find,
-    // findPeriodo,
-    // dropAll,
-    // update
-}
+  findAll,
+  findEventosPorCurso,
+  register,
+  deleteEvento,
+  // find,
+  // findPeriodo,
+  // dropAll,
+  // update
+};
