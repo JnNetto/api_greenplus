@@ -5,7 +5,7 @@ let cursosDb = require('../../../../../reposotiry/cursos')
 let registerEvento = async (idCurso, novoEvento) => {
     try {
         const eventosCurso = await eventosDb.findEventosPorCurso(idCurso)
-        const id = await eventosDb.register(eventosCurso, novoEvento);
+        const id = await eventosDb.register(idCurso, novoEvento);
 
         return id;
     } catch (err) {

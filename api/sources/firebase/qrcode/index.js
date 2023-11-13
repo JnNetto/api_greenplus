@@ -33,16 +33,11 @@ let register = async (idCurso, idPeriodo, novoQrCode) => {
     })
 }
 
-let deleteQrCode = (idCurso, idPeriodo, idQrCode) => {
-    let qrCodeCursoPeriodo = qrcodeRef[idCurso][idPeriodo];
-    let qrCodeIndex = qrCodeCursoPeriodo.findIndex(qr => qr.id === idQrCode);
-
-    if (qrCodeIndex !== -1) {
-        qrCodeCursoPeriodo.splice(qrCodeIndex, 1);
-        return idQrCode;
-    } else {
-        return null;
-    }
+let deleteQrCode = async (idCurso, idPeriodo, idQrCode) => {
+    console.log(`idCurso(${idCurso}), idPeriodo(${idPeriodo}), idQrCode(${idQrCode})`)
+    return await qrcodeRef.child(idCurso + "/" + idPeriodo + "/" + idQrCode).remove().then(snapshot => {
+        return idQrCode
+    })
 }
 
 // const qrcode = qrCodeCurso.find(qr => qr.id === idPeriodo)

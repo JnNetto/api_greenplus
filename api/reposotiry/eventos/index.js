@@ -8,9 +8,9 @@ let findEventosPorCurso = (idCurso) => {
   }
 }
 
-let register = async (eventosCurso, novoEvento) =>  {
+let register = async (idCurso, novoEvento) =>  {
   try{
-    var id = await eventosDb.register(eventosCurso, novoEvento)
+    var id = await eventosDb.register(idCurso, novoEvento)
 
     return id
   }catch(err){

@@ -14,30 +14,21 @@ let findEventosPorCurso = async (id) => {
     return evento
 }
 
-let register = (eventosCurso, novoEvento) => {
-    if (eventosCurso && novoEvento) {
-        console.log(novoEvento);
-        var id = eventosCurso.length + 1
-        novoEvento.id = id
-        eventosCurso.push(novoEvento)
-
-        return novoEvento.id
-    } else {
-        return null
-    }
+let register = async (idCurso, novoEvento) => {
+    console.log(idCurso)
+    console.log(novoEvento)
+    novoEvento.id = eventosRef.push().key;
+    return await eventosRef.child(idCurso + "/" + novoEvento.id).update(novoEvento).then(snapshot => {
+        return novoEvento
+    })
 }
 
-let deleteEvento = (idCurso, idEvento) => {
-    let eventosCurso = eventosRef[idCurso];
-    let eventoIndex = eventosCurso.findIndex(evento => evento.id === idEvento);
+let deleteEvento = async (idCurso, idEvento) => {
+    return await eventosRef.child(idCurso + "/" + idEvento).remove().then(snapshot => {
+        return idEvento
+    })
+  }
 
-    if (eventoIndex !== -1) {
-        eventosCurso.splice(eventoIndex, 1);
-        return idEvento;
-    } else {
-        return null;
-    }
-}
 // let find = (prop, val) => {
 //     var user = eventosDb.find(user => user.username == val)
 //     if (user) {

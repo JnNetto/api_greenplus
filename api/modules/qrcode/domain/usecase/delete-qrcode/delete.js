@@ -8,7 +8,6 @@ let deleteQrCode = async (idCurso, idPeriodo, idQrCode) => {
         // const qrCodeCurso = await qrcodeDb.findIdQrcodeCurso(curso)
         const id = await qrcodeDb.deleteQrCode(idCurso, idPeriodo, idQrCode)
         console.log(id)
-
         return id
     } catch (err) {
         throw err

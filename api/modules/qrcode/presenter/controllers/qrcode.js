@@ -69,7 +69,7 @@ controller.delete = (req, res, next) => {
 
     deleteQrCode.deleteQrCode(idCurso, idPeriodo, idQrCode).then(id => {
         if (id){
-            res.status(204).send(helper.responseBodyNoContent({ data: id }))
+            res.status(200).send(helper.responseBodyNoContent({ data: id }))
         } else {
             res.status(404).send(helper.responseBodyNotFound({}))
         }
