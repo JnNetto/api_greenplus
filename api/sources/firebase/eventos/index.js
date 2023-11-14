@@ -3,41 +3,32 @@ let eventosRef = db.ref("eventos");
 
 let findAll = async () => {
   return await eventosRef.once("value").then((snapshot) => {
-    return snapshot.val();
+    const data = snapshot.val()
+    return (data !== null) ? data : []
+  })
+}
+
+let findEventosPorCurso = async (idCurso) => {
+  return await eventosRef.child(idCurso).once("value").then((snapshot) => {
+    var evento = []
+    snapshot.forEach((childSnapshot) => {
+      eventoJSON = childSnapshot.toJSON()
+      evento.push(eventoJSON)
+    });
+    return evento
   });
 };
 
-let findEventosPorCurso = async (idCurso) => {
-  return await eventosRef
-    .child(idCurso)
-    .once("value")
-    .then((snapshot) => {
-      var evento = [];
-      snapshot.forEach((childSnapshot) => {
-        qr = childSnapshot.toJSON();
-        evento.push(qr);
-      });
-      return evento;
-    });
-};
-
 let register = async (idCurso, novoEvento) => {
-  console.log(idCurso);
-  console.log(novoEvento);
-  novoEvento.id = eventosRef.push().key;
-  return await eventosRef
-    .child(idCurso + "/" + novoEvento.id)
-    .update(novoEvento)
-    .then((snapshot) => {
+  novoEvento.id = eventosRef.push().key
+  return await eventosRef.child(idCurso + "/" + novoEvento.id).update(novoEvento).then((snapshot) => {
       return novoEvento;
     });
 };
 
 let deleteEvento = async (idCurso, idEvento) => {
   return await eventosRef
-    .child(idCurso + "/" + idEvento)
-    .remove()
-    .then((snapshot) => {
+    .child(idCurso + "/" + idEvento).remove().then((snapshot) => {
       return idEvento;
     });
 };
