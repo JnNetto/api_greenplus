@@ -27,14 +27,13 @@ let findQrcode = async (idCurso, idPeriodo) => {
 }
 
 let register = async (idCurso, idPeriodo, novoQrCode) => {
-    novoQrCode.id = qrcodeRef.push().key;
+    novoQrCode.id = qrcodeRef.push().key
     return await qrcodeRef.child(idCurso + "/" + idPeriodo + "/" + novoQrCode.id).update(novoQrCode).then(snapshot => {
         return novoQrCode
     })
 }
 
 let deleteQrCode = async (idCurso, idPeriodo, idQrCode) => {
-    console.log(`idCurso(${idCurso}), idPeriodo(${idPeriodo}), idQrCode(${idQrCode})`)
     return await qrcodeRef.child(idCurso + "/" + idPeriodo + "/" + idQrCode).remove().then(snapshot => {
         return idQrCode
     })

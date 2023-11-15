@@ -5,8 +5,8 @@ let horariosDb = require('../../../../../reposotiry/horarios');
 let substituirHorario = async (idCurso, novoHorario) => {
     try {
         //const horariosCurso = await horariosDb.findHorariosPorCurso(idCurso)
-        const id = await horariosDb.register(idCurso, novoHorario);
-        return id
+        const novoHorarios = await horariosDb.updateHorarios(idCurso, novoHorario);
+        return novoHorarios
     } catch (err) {
         throw err;
     }

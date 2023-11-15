@@ -7,17 +7,13 @@ let findHorariosPorCurso = async (id) => {
     return horario;
 }
 
-// let put_horario = (idCurso, novoHorario) => {
-//     try {
-//         horariosRef[idCurso] = novoHorario
-//         return novoHorario  
-//     } catch (error) {
-//         return null;
-//     }
-// }
-
+let updateHorarios = async (idCurso, novoHorario) => {
+    return await horariosRef.child(idCurso).update(novoHorario).then(snapshot => {
+        return novoHorario
+    })
+}
 
 module.exports = {
     findHorariosPorCurso,
-    // put_horario
+    updateHorarios
 }

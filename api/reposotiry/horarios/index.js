@@ -8,10 +8,9 @@ let findHorariosPorCurso = (idCurso) => {
   }
 }
 
-let register = async (idCurso, novoHorario) =>  {
+let updateHorarios = async (idCurso, novoHorario) =>  {
   try{
-    var id = await horariosDb.put_horario(idCurso, novoHorario)
-    return id
+     return Promise.resolve(horariosDb.updateHorarios(idCurso, novoHorario))
   }catch(err){
     return Promise.reject(err)
   }
@@ -67,7 +66,7 @@ let deleteEvento = (idCurso, idEvento) => {
 
 module.exports = {
   findHorariosPorCurso,
-  register,
+  updateHorarios,
   deleteEvento,
   // findUser,
   // findPeriodo,

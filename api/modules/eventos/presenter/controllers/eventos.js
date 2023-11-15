@@ -47,7 +47,7 @@ controller.delete = (req, res, next) => {
 
     deleteEventos.deleteEvento(idCurso, idEvento).then(id => {
         if (id) {
-            res.status(204).send(helper.responseBodyNoContent({data:id}))
+            res.status(200).send(helper.responseBodyNoContent({data:id}))
             console.log(id)
         } else {
             res.status(404).send(helper.responseBodyNotFound({}))
