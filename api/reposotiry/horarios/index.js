@@ -1,28 +1,28 @@
-let horariosDb = require('../../sources/firebase/horarios')
+let horariosDb = require("../../sources/firebase/horarios");
 
 let findHorariosPorCurso = (idCurso) => {
-  try{
-    return Promise.resolve(horariosDb.findHorariosPorCurso(idCurso))
-  }catch(err){
-    return Promise.reject(err)
+  try {
+    return Promise.resolve(horariosDb.findHorariosPorCurso(idCurso));
+  } catch (err) {
+    return Promise.reject(err);
   }
-}
+};
 
-let updateHorarios = async (idCurso, novoHorario) =>  {
-  try{
-     return Promise.resolve(horariosDb.updateHorarios(idCurso, novoHorario))
-  }catch(err){
-    return Promise.reject(err)
+let updatHorarios = async (idCurso, novoHorario) => {
+  try {
+    return Promise.resolve(horariosDb.updateHorarios(idCurso, novoHorario));
+  } catch (err) {
+    return Promise.reject(err);
   }
-}
+};
 
 let deleteEvento = (idCurso, idEvento) => {
-  try{
-    return Promise.resolve(horariosDb.deleteEvento(idCurso, idEvento))
-  }catch(err){
-    return Promise.reject(err)
+  try {
+    return Promise.resolve(horariosDb.deleteEvento(idCurso, idEvento));
+  } catch (err) {
+    return Promise.reject(err);
   }
-}
+};
 
 // let findUser = (prop, val) => {
 //   try{
@@ -66,11 +66,11 @@ let deleteEvento = (idCurso, idEvento) => {
 
 module.exports = {
   findHorariosPorCurso,
-  updateHorarios,
+  updatHorarios,
   deleteEvento,
   // findUser,
   // findPeriodo,
-  // dropAll, 
+  // dropAll,
   // update,
   // updateUserValue
-}
+};
