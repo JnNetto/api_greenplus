@@ -10,7 +10,7 @@ let findHorariosPorCurso = (idCurso) => {
 
 let updatHorarios = async (idCurso, novoHorario) => {
   try {
-    return Promise.resolve(horariosDb.updateHorarios(idCurso, novoHorario));
+    return Promise.resolve(horariosDb.updatHorarios(idCurso, novoHorario));
   } catch (err) {
     return Promise.reject(err);
   }

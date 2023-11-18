@@ -22,7 +22,6 @@ controller.getHorariosCurso = (req, res, next) => {
 
 controller.substituirHorario = (req, res, next) => {
     let idCurso = req.params.idcurso
-    console.log("idCurso " + idCurso)
 
     putHorarios.substituirHorario(idCurso, req.body).then(novoHorario => {
         res.status(200).send(helper.responseBodySuccess({data : novoHorario}))

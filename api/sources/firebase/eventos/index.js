@@ -35,6 +35,7 @@ let findEventosPorCurso = async (idCurso) => {
 let register = async (idCurso, novoEvento) => {
   novoEvento.id = eventosRef.push().key
   return await eventosRef.child(idCurso + "/" + novoEvento.id).update(novoEvento).then((snapshot) => {
+    console.log(novoEvento)
     return novoEvento
   })
 }
