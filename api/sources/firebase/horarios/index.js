@@ -26,8 +26,10 @@ let findHorariosPorCurso = async (id) => {
 
 let updatHorarios = async (idCurso, novoHorario) => {
   try {
+    console.log("Entrou aqui 4")
     await horariosRef.child(idCurso).update({"value": novoHorario.value})
     novoHorario = novoHorario.value;
+    console.log(novoHorario)
     return novoHorario
   } catch (error) {
     throw error
